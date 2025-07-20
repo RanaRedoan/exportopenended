@@ -1,23 +1,17 @@
-# optcounts
+# 📘 exportopenended — Open-Ended Response Exporter for Stata
 
-This repository contains a Stata program, `optcounts`, designed to analyze survey data by counting user-specified special value selections per enumerator.
+`exportopenended` is a specialized tool for extracting and organizing open-ended survey responses from Stata datasets into analysis-ready Excel format. It transforms wide-format data into a clean long structure ideal for qualitative analysis or translation workflows.
 
-## Files
+---
 
-- `optcounts.ado`: The Stata program file for counting special values (e.g., -99, 99, -999) across all variables per enumerator.
-- `optcounts.sthlp`: The help file for Stata documentation.
-- `example.do`: A detailed example script demonstrating usage with sample data.
-- `readme.md`: This file, providing an overview of the repository.
+## 🔧 Installation
 
-## Installation
-
-1. Clone or download this repository to your local machine.
-2. Place the `optcounts.ado` file in your Stata ado path (run `sysdir` in Stata to find it, e.g., `~/ado/personal/`).
-3. Install the help file by placing `optcounts.sthlp` in the same directory or your Stata help path.
-
-## Usage
-
-Run the following command in Stata after loading your dataset:
+Install directly from GitHub:
 
 ```stata
-optcounts -99 99 -999 -98, enum(interviewr_name)
+net install exportopenended, from("https://raw.githubusercontent.com/RanaRedoan/exportopenended/main") replace
+
+```example
+
+// With custom ID
+exportopenended using "Openended_Responses.xlsx", id(participant_id) replace
