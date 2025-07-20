@@ -50,13 +50,13 @@ The output contains four columns:
 Export with default ID variable "key":
 
 {p 8 8 2}
-{cmd:. exportopenended using "responses.xlsx", replace}
+{cmd: exportopenended using "responses.xlsx", replace}
 
 {p 4 4 2}
 Export with custom ID variable:
 
 {p 8 8 2}
-{cmd:. exportopenended using "output.xlsx", id(patient_id) replace}
+{cmd: exportopenended using "output.xlsx", id(patient_id) replace}
 
 {title:Author}
 
