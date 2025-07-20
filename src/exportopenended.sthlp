@@ -61,6 +61,6 @@ Export with custom ID variable:
 {title:Author}
 
 {p 4 4 2}
-[Your Name], [Your Institution]{p_end}
+Md. Redoan Hossain Bhuiyan, redoanhossain630@gmail.com{p_end}
 {p 4 4 2}
 GitHub: {browse "https://github.com/[yourusername]"}
