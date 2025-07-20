@@ -62,5 +62,3 @@ Export with custom ID variable:
 
 {p 4 4 2}
 Md. Redoan Hossain Bhuiyan, redoanhossain630@gmail.com{p_end}
-{p 4 4 2}
-GitHub: {browse "https://github.com/[yourusername]"}
