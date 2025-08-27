@@ -1,17 +1,51 @@
-# 📘 exportopenended — Open-Ended Response Exporter for Stata
+# 📊 exportopenended: Export Open-Ended Survey Responses to Excel
 
-`exportopenended` is a specialized tool for extracting and organizing open-ended survey responses from Stata datasets into analysis-ready Excel format. It transforms wide-format data into a clean long structure ideal for qualitative analysis or translation workflows.
+`exportopenended` is a Stata program that exports **open-ended survey responses** to an Excel file in **long format**.  
+It is especially useful for preparing survey text data for translation, coding, or further qualitative analysis.
 
 ---
 
-## 🔧 Installation
+## 🚀 Installation
 
-Install directly from GitHub:
+You can install the command directly from GitHub:
 
 ```stata
 net install exportopenended, from("https://raw.githubusercontent.com/RanaRedoan/exportopenended/main") replace
+```
+---
+## 📖 Syntax
+```stata
+exportopenended using filename.xlsx [, replace id(varname)]
+```
+### 📌 Options
+`replace` → Overwrite the Excel file if it already exists.
 
-```example
+`id(varname)` → Specify an alternative ID variable (default is key).
 
-// With custom ID
-exportopenended using "Openended_Responses.xlsx", id(participant_id) replace
+## 📊 Description
+`exportopenended` exports all open-ended text responses from your dataset into an Excel file in long format.
+The output Excel file contains four columns:
+
+`ID` `variable` (default `key`)
+Original variable name
+Text response (data)
+Empty column for translations (translated)
+This format makes it easy to handle open-ended responses for coding, translation, or analysis in Excel or other software.
+
+## 💻 Examples
+Export using the default ID variable (key) and replace existing file:
+```stata
+exportopenended using "responses.xlsx", replace
+```
+Export using a custom ID variable (patient_id) and replace existing file:
+```stata
+exportopenended using "output.xlsx", id(patient_id) replace
+```
+
+## 🤝 Contribution
+Pull requests and suggestions are welcome!
+If you find issues or have feature requests, please open an Issue in the repository.
+
+👨‍💻 Author
+Md. Redoan Hossain Bhuiyan
+📧 redoanhossain630@gmail.com
