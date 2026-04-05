@@ -23,7 +23,12 @@ exportopenended using filename.xlsx [, replace id(varname)]
 `id(varname)` → Specify an alternative ID variable (default is key).
 
 ## 📊 Description
-`exportopenended` exports all open-ended text responses from your dataset into an Excel file in long format.
+`exportopenended` exports open-ended text responses from your dataset into an Excel file in long format.
+It exports only values that contain at least one alphabetic character.
+String values that are only numbers, spaces, dots, slashes, or other punctuation are skipped.
+
+This is useful for SurveyCTO, Kobo, or ODK exports where some open-ended fields are stored as strings but contain only numeric codes such as `"123"` or `"1 2 3"`.
+
 The output Excel file contains four columns:
 
 `ID` `variable` (default `key`)
@@ -31,6 +36,8 @@ Original variable name
 Text response (data)
 Empty column for translations (translated)
 This format makes it easy to handle open-ended responses for coding, translation, or analysis in Excel or other software.
+
+During export, the command shows a clean progress display for each exported variable and then prints a final summary with the output file, number of exported variables, and number of exported responses.
 
 ## 💻 Examples
 Export using the default ID variable (key) and replace existing file:

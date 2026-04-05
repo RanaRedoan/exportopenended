@@ -1,0 +1,7 @@
+tests/tmp/
+tests/test_exportopenended_filter.do
+codex_stata_*.log
+test_exportopenended_filter.log
+test_exportopenended_filter_unicode.log
+exportopenended_no_text.log
+exportopenended_no_text_check.log

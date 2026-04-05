@@ -1,5 +1,5 @@
 v 3
-d exportopenended: Generate enumerator bias reports
+d exportopenended: Export open-ended survey responses to Excel
 d distribution-date: 2024-07-04
 f src/exportopenended.ado
 f src/exportopenended.sthlp

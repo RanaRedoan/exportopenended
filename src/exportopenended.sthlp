@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.0 [Current Date]}{...}
+{* *! version 1.1 05apr2026}{...}
 {hline}
 help for {hi:exportopenended}
 {hline}
@@ -25,6 +25,8 @@ help for {hi:exportopenended}
 
 {p 4 4 2}
 {cmd:exportopenended} exports all open-ended text responses from your dataset to an Excel file in long format.
+Only responses containing at least one alphabetic character are exported.
+String values made only of digits, spaces, dots, slashes, or other punctuation are skipped.
 The output contains four columns:
 
 {p 8 8 2}
@@ -43,6 +45,12 @@ The output contains four columns:
 
 {phang}
 {opt id(varname)} specifies an alternative ID variable (default is {cmd:key}).
+
+{title:Output}
+
+{p 4 4 2}
+During export, {cmd:exportopenended} prints a concise progress message for each variable that contributes text responses.
+When the export finishes, it reports the output file, the number of variables exported, and the number of responses exported.
 
 {title:Examples}
 
