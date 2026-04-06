@@ -29,7 +29,9 @@ help for {hi:exportopenended}
 Only responses containing at least one alphabetic character are exported.
 String values made only of digits, spaces, dots, slashes, or other punctuation are skipped.
 By default, common metadata-style string variables such as {cmd:key}, {cmd:uid}, {cmd:date}, {cmd:start}, {cmd:end}, {cmd:submissiondate}, {cmd:instanceid}, and {cmd:deviceid} are excluded, including underscore variants such as {cmd:sub_date} or {cmd:form_start_time}.
-Use {opt includeexcluded} to include those variables again.
+Variables whose names contain {cmd:name} are always excluded.
+Variables are also excluded when the same trimmed string length appears in at least 30% of total observations, which helps filter ID-like fields such as {cmd:ENUM10056}.
+Use {opt includeexcluded} only to include metadata/date-style variables again; it does not override the {cmd:name} or repeated-length exclusions.
 The output contains four columns:
 
 {p 8 8 2}
@@ -50,7 +52,7 @@ The output contains four columns:
 {opt id(varname)} specifies an alternative ID variable (default is {cmd:key}).
 
 {phang}
-{opt includeexcluded} disables the built-in metadata-name exclusions and scans all string variables except the selected ID variable.
+{opt includeexcluded} disables only the built-in metadata-name exclusions and scans those string variables again. It does not override the {cmd:name} or repeated-length exclusions.
 
 {title:Output}
 

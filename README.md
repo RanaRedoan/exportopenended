@@ -29,7 +29,9 @@ exportopenended using filename.xlsx [, replace id(varname) includeexcluded]
 It exports only values that contain at least one alphabetic character.
 String values that are only numbers, spaces, dots, slashes, or other punctuation are skipped.
 By default, it skips common metadata-style string variables such as `key`, `id`, `uid`, `date`, `start`, `end`, `submissiondate`, `instanceid`, and `deviceid`, including underscore variants like `sub_date` or `form_start_time`.
-Use `includeexcluded` if you want those fields scanned as well.
+Variables whose names contain `name` are always excluded.
+Variables are also excluded when the same trimmed string length appears in at least 30% of total observations, which helps filter ID-like fields such as `ENUM10056`.
+Use `includeexcluded` only if you want metadata/date-like fields scanned as well; it does not override the `name` or repeated-length exclusions.
 
 This is useful for SurveyCTO, Kobo, or ODK exports where some open-ended fields are stored as strings but contain only numeric codes such as `"123"` or `"1 2 3"`.
 
