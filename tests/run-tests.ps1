@@ -94,8 +94,9 @@ Invoke-StataRegressionTest -DoFileName "test_exportopenended_filter_unicode.do" 
 Invoke-StataRegressionTest -DoFileName "test_exportopenended_exclude_metadata.do" -ExpectedPatterns @(
     "Exporting q_text\.\.\.",
     "Exporting comments\.\.\.",
-    "Variables exported: 2",
-    "Responses exported: 4"
+    "Exporting story_var\.\.\.",
+    "Variables exported: 3",
+    "Responses exported: 7"
 )
 
 Invoke-StataRegressionTest -DoFileName "test_exportopenended_includeexcluded.do" -ExpectedPatterns @(
@@ -103,8 +104,9 @@ Invoke-StataRegressionTest -DoFileName "test_exportopenended_includeexcluded.do"
     "Exporting StartTime\.\.\.",
     "Exporting sub_date\.\.\.",
     "Exporting q_text\.\.\.",
-    "Variables exported: 4",
-    "Responses exported: 8"
+    "Exporting story_var\.\.\.",
+    "Variables exported: 5",
+    "Responses exported: 11"
 )
 
 Write-Host "All regression checks passed."

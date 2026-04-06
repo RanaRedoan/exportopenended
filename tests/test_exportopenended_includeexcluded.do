@@ -17,9 +17,20 @@ capture noisily {
         str10 UID ///
         str20 StartTime ///
         str20 sub_date ///
+        str20 name_respondent ///
+        str12 enum_code ///
+        str20 story_var ///
         str20 q_text
-    "k1" "uid-a" "01 Apr 2026 10:30" "08 Apr 2026" "hello"
-    "k2" "uid-b" "02 Apr 2026 08:00" "09 Apr 2026" "world"
+    "k1" "u-a1"    "Apr 6 9am"  "Apr 6"    "Rahim" "ENUM10056" "alpha"   "hello"
+    "k2" "uid-b22" "7 Apr 10am" "7-Apr-26" "Karim" "ENUM10057" "planet"  "world"
+    "k3" ""        ""           ""         "Suma"  "ENUM10058" "orchard" ""
+    "k4" ""        ""           ""         ""      ""          ""        ""
+    "k5" ""        ""           ""         ""      ""          ""        ""
+    "k6" ""        ""           ""         ""      ""          ""        ""
+    "k7" ""        ""           ""         ""      ""          ""        ""
+    "k8" ""        ""           ""         ""      ""          ""        ""
+    "k9" ""        ""           ""         ""      ""          ""        ""
+    "k10" ""       ""           ""         ""      ""          ""        ""
     end
 
     log using `"`log_path'"', text replace
@@ -27,7 +38,7 @@ capture noisily {
 
     import excel using `"`xlsx_path'"', clear firstrow
 
-    assert _N == 8
+    assert _N == 11
     confirm variable key
     confirm variable variable
     confirm variable data
@@ -45,13 +56,19 @@ capture noisily {
     count if variable == "sub_date"
     assert r(N) == 2
 
-    count if data == "uid-a"
+    count if variable == "story_var"
+    assert r(N) == 3
+
+    count if inlist(variable, "name_respondent", "enum_code")
+    assert r(N) == 0
+
+    count if data == "u-a1"
     assert r(N) == 1
 
-    count if data == "01 Apr 2026 10:30"
+    count if data == "Apr 6 9am"
     assert r(N) == 1
 
-    count if data == "08 Apr 2026"
+    count if data == "Apr 6"
     assert r(N) == 1
 
     count if !missing(translated)
