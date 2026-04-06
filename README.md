@@ -28,7 +28,7 @@ exportopenended using filename.xlsx [, replace id(varname) includeexcluded]
 `exportopenended` exports open-ended text responses from your dataset into an Excel file in long format.
 It exports only values that contain at least one alphabetic character.
 String values that are only numbers, spaces, dots, slashes, or other punctuation are skipped.
-By default, it skips common metadata-style string variables such as `key`, `id`, `uid`, `date`, `start`, `end`, `submissiondate`, `instanceid`, and `deviceid`.
+By default, it skips common metadata-style string variables such as `key`, `id`, `uid`, `date`, `start`, `end`, `submissiondate`, `instanceid`, and `deviceid`, including underscore variants like `sub_date` or `form_start_time`.
 Use `includeexcluded` if you want those fields scanned as well.
 
 This is useful for SurveyCTO, Kobo, or ODK exports where some open-ended fields are stored as strings but contain only numeric codes such as `"123"` or `"1 2 3"`.

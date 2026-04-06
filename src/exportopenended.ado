@@ -26,7 +26,7 @@ program define exportopenended
     quietly ds `id', not
     local all_vars `r(varlist)'
     local text_vars ""
-    local excluded_name_pattern "^(key|id|uid|uuid|instanceid|instance_id|submissiondate|submission_date|date|datetime|date_time|start|starttime|start_time|end|endtime|end_time|deviceid|device_id)$"
+    local excluded_name_pattern "(^|_)(key|id|uid|uuid|instanceid|instance_id|submissiondate|submission_date|date|datetime|date_time|start|starttime|start_time|end|endtime|end_time|deviceid|device_id)($|_)"
 
     foreach var of local all_vars {
         capture confirm string variable `var'

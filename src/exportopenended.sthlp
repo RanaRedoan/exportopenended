@@ -28,7 +28,7 @@ help for {hi:exportopenended}
 {cmd:exportopenended} exports all open-ended text responses from your dataset to an Excel file in long format.
 Only responses containing at least one alphabetic character are exported.
 String values made only of digits, spaces, dots, slashes, or other punctuation are skipped.
-By default, common metadata-style string variables such as {cmd:key}, {cmd:uid}, {cmd:date}, {cmd:start}, {cmd:end}, {cmd:submissiondate}, {cmd:instanceid}, and {cmd:deviceid} are excluded.
+By default, common metadata-style string variables such as {cmd:key}, {cmd:uid}, {cmd:date}, {cmd:start}, {cmd:end}, {cmd:submissiondate}, {cmd:instanceid}, and {cmd:deviceid} are excluded, including underscore variants such as {cmd:sub_date} or {cmd:form_start_time}.
 Use {opt includeexcluded} to include those variables again.
 The output contains four columns:
 

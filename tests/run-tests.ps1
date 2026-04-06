@@ -101,9 +101,10 @@ Invoke-StataRegressionTest -DoFileName "test_exportopenended_exclude_metadata.do
 Invoke-StataRegressionTest -DoFileName "test_exportopenended_includeexcluded.do" -ExpectedPatterns @(
     "Exporting UID\.\.\.",
     "Exporting StartTime\.\.\.",
+    "Exporting sub_date\.\.\.",
     "Exporting q_text\.\.\.",
-    "Variables exported: 3",
-    "Responses exported: 6"
+    "Variables exported: 4",
+    "Responses exported: 8"
 )
 
 Write-Host "All regression checks passed."

@@ -16,9 +16,10 @@ capture noisily {
         str8 key ///
         str10 UID ///
         str20 StartTime ///
+        str20 sub_date ///
         str20 q_text
-    "k1" "uid-a" "01 Apr 2026 10:30" "hello"
-    "k2" "uid-b" "02 Apr 2026 08:00" "world"
+    "k1" "uid-a" "01 Apr 2026 10:30" "08 Apr 2026" "hello"
+    "k2" "uid-b" "02 Apr 2026 08:00" "09 Apr 2026" "world"
     end
 
     log using `"`log_path'"', text replace
@@ -26,7 +27,7 @@ capture noisily {
 
     import excel using `"`xlsx_path'"', clear firstrow
 
-    assert _N == 6
+    assert _N == 8
     confirm variable key
     confirm variable variable
     confirm variable data
@@ -41,10 +42,16 @@ capture noisily {
     count if variable == "StartTime"
     assert r(N) == 2
 
+    count if variable == "sub_date"
+    assert r(N) == 2
+
     count if data == "uid-a"
     assert r(N) == 1
 
     count if data == "01 Apr 2026 10:30"
+    assert r(N) == 1
+
+    count if data == "08 Apr 2026"
     assert r(N) == 1
 
     count if !missing(translated)
