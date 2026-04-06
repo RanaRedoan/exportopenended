@@ -1,6 +1,6 @@
 v 3
 d exportopenended: Export open-ended survey responses to Excel
-d distribution-date: 2024-07-04
+d distribution-date: 2026-04-06
 f src/exportopenended.ado
 f src/exportopenended.sthlp
 f examples/example.do

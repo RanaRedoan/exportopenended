@@ -1,9 +1,9 @@
-*! exportopenended v1.1 - Export open-ended responses to Excel in long format
-*! Syntax: exportopenended using "filename.xlsx" [, replace id(varname)]
+*! exportopenended v1.2 - Export open-ended responses to Excel in long format
+*! Syntax: exportopenended using "filename.xlsx" [, replace id(varname) includeexcluded]
 
 program define exportopenended
     version 16
-    syntax using/, [REPLace ID(varname)]
+    syntax using/, [REPLace ID(varname) INCLUDEEXCLUDED]
 
     // Set default ID variable to 'key' if not specified
     if "`id'" == "" {
@@ -22,14 +22,26 @@ program define exportopenended
         exit 111
     }
 
-    // Identify all string variables (excluding ID variable)
+    // Identify all string variables, skipping common metadata-like names by default
     quietly ds `id', not
     local all_vars `r(varlist)'
     local text_vars ""
+    local excluded_name_pattern "^(key|id|uid|uuid|instanceid|instance_id|submissiondate|submission_date|date|datetime|date_time|start|starttime|start_time|end|endtime|end_time|deviceid|device_id)$"
 
     foreach var of local all_vars {
         capture confirm string variable `var'
-        if !_rc local text_vars `text_vars' `var'
+        if _rc {
+            continue
+        }
+
+        if "`includeexcluded'" == "" {
+            local lower_var = lower("`var'")
+            if regexm("`lower_var'", "`excluded_name_pattern'") {
+                continue
+            }
+        }
+
+        local text_vars `text_vars' `var'
     }
 
     // Check if we found any text variables
