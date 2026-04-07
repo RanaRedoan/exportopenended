@@ -23,28 +23,22 @@ program define exportopenended
     }
 
     // Identify all string variables, skipping common metadata-like names by default
-    local total_obs = _N
-    local same_length_threshold = max(3, ceil(`total_obs' * 0.3))
     quietly ds `id', not
     local all_vars `r(varlist)'
     local text_vars ""
     local excluded_name_pattern "(^|_)(key|id|uid|uuid|instanceid|instance_id|submissiondate|submission_date|date|datetime|date_time|start|starttime|start_time|end|endtime|end_time|deviceid|device_id)($|_)"
 
     foreach var of local all_vars {
-        local lower_var = lower("`var'")
         capture confirm string variable `var'
         if _rc {
             continue
         }
 
         if "`includeexcluded'" == "" {
+            local lower_var = lower("`var'")
             if regexm("`lower_var'", "`excluded_name_pattern'") {
                 continue
             }
-        }
-
-        if strpos("`lower_var'", "name") {
-            continue
         }
 
         local text_vars `text_vars' `var'
@@ -85,20 +79,10 @@ program define exportopenended
     quietly save `long_data', replace emptyok
 
     foreach var of local text_vars {
-        tempvar data_length length_count
         quietly use `source_data', clear
         quietly keep `id' `var'
-        quietly replace `var' = ustrtrim(`var')
-
-        quietly gen int `data_length' = ustrlen(`var') if `var' != ""
-        quietly bysort `data_length': gen long `length_count' = _N if `var' != ""
-        quietly summarize `length_count', meanonly
-
-        if r(N) > 0 & r(max) >= `same_length_threshold' {
-            continue
-        }
-
         quietly rename `var' data
+        quietly replace data = ustrtrim(data)
         quietly keep if ustrregexm(data, "\p{L}")
         quietly count
 
