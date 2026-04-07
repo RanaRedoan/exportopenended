@@ -24,7 +24,7 @@ program define exportopenended
 
     // Identify all string variables, skipping common metadata-like names by default
     local total_obs = _N
-    local same_length_threshold = max(3, ceil(`total_obs' * 0.3))
+    local same_length_threshold = ceil(`total_obs' * 0.3)
     quietly ds `id', not
     local all_vars `r(varlist)'
     local text_vars ""
