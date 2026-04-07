@@ -1,4 +1,3 @@
-.worktrees/
 tests/tmp/
 tests/test_exportopenended_filter.do
 codex_stata_*.log
