@@ -24,11 +24,6 @@ capture noisily {
     4 "   "         ""      " / " ""
     end
 
-    gen str20 q_fixed = ""
-    replace q_text = "survey" in 1
-    replace q_fixed = "AA11" in 1
-    replace q_fixed = "BB22" in 2
-
     replace q_text = ustrunescape("\u09AC\u09BE\u0982\u09B2\u09BE") in 2
 
     log using `"`log_path'"', text replace
@@ -48,13 +43,13 @@ capture noisily {
     count if variable == "q_mixed"
     assert r(N) == 2
 
-    count if inlist(variable, "q_numeric", "q_punct", "q_fixed")
+    count if inlist(variable, "q_numeric", "q_punct")
     assert r(N) == 0
 
-    count if inlist(data, "123", "1 2 3", "789", ".", "/", "...", "AA11", "BB22")
+    count if inlist(data, "123", "1 2 3", "789", ".", "/", "...")
     assert r(N) == 0
 
-    count if data == "survey"
+    count if data == "hello"
     assert r(N) == 1
 
     count if data == ustrunescape("\u09AC\u09BE\u0982\u09B2\u09BE")

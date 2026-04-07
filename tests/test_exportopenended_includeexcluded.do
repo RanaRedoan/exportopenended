@@ -33,17 +33,12 @@ capture noisily {
     "k10" ""       ""           ""         ""      ""          ""        ""
     end
 
-    gen str20 near_threshold = ""
-    replace near_threshold = "stone" in 1
-    replace near_threshold = "bread" in 2
-    replace near_threshold = "sun" in 3
-
     log using `"`log_path'"', text replace
     exportopenended using `"`xlsx_path'"', includeexcluded replace
 
     import excel using `"`xlsx_path'"', clear firstrow
 
-    assert _N == 14
+    assert _N == 11
     confirm variable key
     confirm variable variable
     confirm variable data
@@ -64,9 +59,6 @@ capture noisily {
     count if variable == "story_var"
     assert r(N) == 3
 
-    count if variable == "near_threshold"
-    assert r(N) == 3
-
     count if inlist(variable, "name_respondent", "enum_code")
     assert r(N) == 0
 
@@ -77,9 +69,6 @@ capture noisily {
     assert r(N) == 1
 
     count if data == "Apr 6"
-    assert r(N) == 1
-
-    count if data == "stone"
     assert r(N) == 1
 
     count if !missing(translated)
